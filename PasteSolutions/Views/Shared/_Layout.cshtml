@@ -20,7 +20,7 @@
 <body class="hljs">
     <header class="header">
         <div class="icon-container create @((bool)ViewData["CreateDisabled"] ? "disabled" : string.Empty)">
-            <i class="material-icons">create</i>
+            <i class="material-icons">add</i>
             <span>Create new snippet</span>
         </div>
         <div class="icon-container save @((bool)ViewData["SaveDisabled"] ? "disabled" : string.Empty)">
@@ -28,7 +28,7 @@
             <span>Save snippet</span>
         </div>
         <div class="icon-container edit @((bool)ViewData["EditDisabled"] ? "disabled" : string.Empty)">
-            <i class="material-icons">border_color</i>
+            <i class="material-icons">edit</i>
             <span>Edit snippet</span>
         </div>
         <div class="error-display">

@@ -10,8 +10,9 @@
     <div class="line-numbers">
         @for (int i = 1; i <= Model.Lines; i++)
         {
-            @i.ToString()
-            <br />
+            <a href="#@i" class="line-number">@i
+                <div id="@i" class="anchor"></div>
+            </a>
         }
     </div>
     <pre>
@@ -21,10 +22,29 @@
     </pre>
 
     <script>
+        var lastHighlight;
+
         $(document).ready(function(){
           $("code").each(function(){
             $(this).html($(this).html().trim());
           });
+
+          window.highlightSelectedLine = function() {
+            var hash = window.location.hash;
+            if (!hash) return;
+
+            if (lastHighlight)
+                $(lastHighlight).removeClass('selected');
+
+            var number = hash.substr(1, hash.length-1);
+            lastHighlight = $(`.line-number #${number}`).first().parent();
+            lastHighlight.addClass('selected');
+          };
+          $(window).on('hashchange', function() {
+              highlightSelectedLine();
+          });
+
+            highlightSelectedLine();
         });
 
         $('.icon-container.edit').click(function () {

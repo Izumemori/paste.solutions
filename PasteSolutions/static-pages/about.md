@@ -8,29 +8,29 @@ They can be saved by either pressing the 'save' icon, or by pressing Ctrl + S.
 
 There's also a rest endpoint at https://paste.solutions/api/upload that accepts json in the following format:
 
-	```json
-	{
-	  "snippet": "<the paste>",
-	  "language": "<the language of the paste>"
-	}
-	```
+```json
+{
+	"snippet": "<the paste>",
+	"language": "<the language of the paste>"
+}
+```
 
 which will generate the following response:
 
-	```json
-	{
-	  "id": "<id of the saved snippet>"
-	}
-	```
+```json
+{
+	"id": "<id of the saved snippet>"
+}
+```
 
 or an error:
 
-	```json
-	{
-	  "error": "<error message>",
-	  "error_code": "<error code>"
-	}
-	```
+```json
+{
+	"error": "<error message>",
+	"error_code": "<error code>"
+}
+```
 
 ## Viewing snippets
 
@@ -50,3 +50,5 @@ This project is FOSS software licensed under LGPL 2.0
 ## Source code
 
 The source code can be found here _https://github.com/Izumemori/paste.solutions_
+
+:)
