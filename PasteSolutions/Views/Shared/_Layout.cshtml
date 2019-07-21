@@ -34,6 +34,10 @@
         <div class="error-display">
             <span>Error occurred</span>
         </div>
+        <div class="icon-container about">
+            <i class="material-icons">help</i>
+            <span>About</span>
+        </div>
     </header>
     @RenderBody()
 
@@ -47,6 +51,9 @@
         });
         $('.icon-container.create:not(.disabled)').click(function () {
             document.location = "/";
+        });
+        $('.icon-container.about:not(.disabled)').click(function () {
+            document.location = "/about.md";
         });
     </script>
     @RenderSection("Scripts", required: false)

@@ -26,14 +26,13 @@ body {
     padding-left: 3vw;
     flex-direction: row;
     align-items: center;
+    justify-content: stretch;
 }
 
 .header > .error-display {
     align-self: center;
     justify-self: center;
-    width: 50%;
-    text-align: right;
-    margin-left: auto;
+    flex-grow: 99;
     visibility: hidden;
     padding-right: 10%;
     color: orangered;
@@ -68,6 +67,18 @@ body {
     color: white;
     font-size: var(--font-size);
     font-family: var(--font-family);
+}
+
+.header > .about {
+    align-self: center;
+    justify-self: center;
+    margin-right: 1%;
+}
+
+.header > .about > span {
+    top: 100%;
+    right: 100%;
+    left: unset;
 }
 
 .header > .icon-container > i {
@@ -137,6 +148,7 @@ body {
     text-decoration: none;
     padding-left: 1vw;
     padding-right: .5vw;
+    text-align: right;
 }
 
 .line-number.selected {
