@@ -1,0 +1,62 @@
+﻿@model IndexViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["CreateDisabled"] = false;
+    ViewData["EditDisabled"] = true;
+    ViewData["SaveDisabled"] = false;
+}
+
+<div class="code-container">
+    <div class="arrow">></div>
+    <textarea class="code-input hljs">@Model.Template</textarea>
+</div>
+
+<script>
+    function postTextAreaContents() {
+        var req = new XMLHttpRequest();
+        var textareaValue = document.getElementsByClassName("code-input")[0].value;
+        var hlRes = hljs.highlightAuto(textareaValue);
+
+        req.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    var resJson = JSON.parse(this.response);
+                    document.location = `${resJson.id}.${hlRes.language}`;
+                }
+                else {
+                    var resJson = JSON.parse(this.response);
+                    $('.error-display span').text(resJson.error);
+                    $('.error-display').addClass('enabled');
+                    setTimeout(function () {
+                        $('.error-display span').text("");
+                        $('.error-display').removeClass('enabled');
+                    }, 10000);
+                }
+            }
+        }
+
+        req.open("POST", "api/upload", true);
+        req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+        var jsonPayload = {
+            snippet: document.getElementsByClassName("code-input")[0].value,
+            language: hlRes.language
+        };
+        req.send(JSON.stringify(jsonPayload));
+    }
+
+    $('.icon-container.save').click(function () {
+        postTextAreaContents();
+    });
+
+    $(window).bind('keydown', function(event) {
+        if (event.ctrlKey || event.metaKey) {
+            switch (String.fromCharCode(event.which).toLowerCase()) {
+            case 's':
+                    event.preventDefault();
+                    postTextAreaContents();
+                break;
+            }
+        }
+    });
+</script>

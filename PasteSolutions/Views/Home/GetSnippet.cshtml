@@ -1,0 +1,34 @@
+﻿@model ViewPasteModel
+
+@{
+    ViewData["CreateDisabled"] = false;
+    ViewData["EditDisabled"] = false;
+    ViewData["SaveDisabled"] = true;
+}
+
+<div class="code-container">
+    <div class="line-numbers">
+        @for (int i = 1; i <= Model.Lines; i++)
+        {
+            @i.ToString()
+            <br />
+        }
+    </div>
+    <pre>
+        <code class="@Model.Extension hljs">
+@Model.Code
+        </code>
+    </pre>
+
+    <script>
+        $(document).ready(function(){
+          $("code").each(function(){
+            $(this).html($(this).html().trim());
+          });
+        });
+
+        $('.icon-container.edit').click(function () {
+            document.location = "/?template=@Model.Id"
+        });
+    </script>
+</div>

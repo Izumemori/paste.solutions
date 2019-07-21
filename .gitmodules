@@ -1,0 +1,3 @@
+[submodule "libs/UniqueId"]
+	path = libs/UniqueId
+	url = https://github.com/Izumemori/UniqueId.git
