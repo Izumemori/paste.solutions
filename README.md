@@ -48,4 +48,4 @@ Currently there is no lifetime limit, but in future I'll be pruning all snippets
 
 ## License
 
-This project is FOSS software licensed under LGPL 2.1
+This project is FOSS licensed under LGPL 2.1
