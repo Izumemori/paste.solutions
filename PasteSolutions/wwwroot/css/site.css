@@ -81,6 +81,7 @@ body {
     align-self: center;
     justify-self: center;
     margin-right: 1%;
+    padding-left: unset;
 }
 
 .header > .about > span {

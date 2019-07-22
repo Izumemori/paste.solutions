@@ -25,11 +25,11 @@
         var lastHighlight;
 
         $(document).ready(function(){
-          $("code").each(function(){
+            $("code").each(function(){
             $(this).html($(this).html().trim());
-          });
+            });
 
-          window.highlightSelectedLine = function() {
+            window.highlightSelectedLine = function() {
             var hash = window.location.hash;
             if (!hash) return;
 
@@ -39,10 +39,10 @@
             var number = hash.substr(1, hash.length-1);
             lastHighlight = $(`.line-number #${number}`).first().parent();
             lastHighlight.addClass('selected');
-          };
-          $(window).on('hashchange', function() {
-              highlightSelectedLine();
-          });
+            };
+            $(window).on('hashchange', function() {
+                highlightSelectedLine();
+            });
 
             highlightSelectedLine();
         });
