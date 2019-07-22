@@ -16,6 +16,12 @@
     $(document).ready(function() {
         $('textarea').tabOverride();
 
+        $('textarea').on('paste', function() {
+            if (this.value.indexOf('\t') > -1) $.fn.tabOverride.tabSize(0);
+
+            $.fn.tabOverride.tabSize(2);
+        });
+
         function postTextAreaContent()
         {
             var str = $('textarea')[0].value;
