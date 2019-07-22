@@ -36,7 +36,6 @@ namespace PasteSolutions.Controllers
 
         [HttpGet("/{id}/raw")]
         [HttpGet("/{id}.{ext}/raw")]
-        [HttpGet("/{id}.{ext}#{hash}/raw")]
         public IActionResult GetRawSnippet(string id, string ext = null)
         {
             if (!TryGetSnippetById(id, ext, out var snippet)) return NotFound();

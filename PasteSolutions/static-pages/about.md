@@ -39,7 +39,7 @@ The Extension can be omitted or replaced when highlight js doesn't determine the
 
 If you need to view the raw content of the paste, simply append **/raw** to the url. 
 
-You can also click on the line numbers to get anchor to that line.
+You can also click on the line numbers to get an anchor to that line.
 
 ## Lifetime of snippets
 

@@ -34,9 +34,17 @@ body {
     justify-self: center;
     flex-grow: 99;
     visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-items: center;
     padding-right: 10%;
     color: orangered;
     font-family: var(--font-family);
+}
+
+.header > .error-display > span {
+    width: 100%;
+    text-align: center;
 }
 
 .header > .error-display.enabled {
