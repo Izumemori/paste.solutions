@@ -5,53 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>paste.solutions</title>
     
-    @await Html.PartialAsync("_Libraries")
-    @await Html.PartialAsync("_Styles")
-    @await Html.PartialAsync("_Favicon")
-    @await Html.PartialAsync("_OpenGraph")
+@await Html.PartialAsync("_Styles")
+@await Html.PartialAsync("_Favicon")
+@await Html.PartialAsync("_OpenGraph")
+@await Html.PartialAsync("_Libraries")
 
     <meta name="robots" content="noindex,nofollow">
-
 </head>
-<body class="hljs">
-    <header class="header">
-        <div class="icon-container create @((bool)ViewData["CreateDisabled"] ? "disabled" : string.Empty)">
-            <i class="material-icons">add</i>
-            <span>Create new snippet</span>
-        </div>
-        <div class="icon-container save @((bool)ViewData["SaveDisabled"] ? "disabled" : string.Empty)">
-            <i class="material-icons">save</i>
-            <span>Save snippet</span>
-        </div>
-        <div class="icon-container edit @((bool)ViewData["EditDisabled"] ? "disabled" : string.Empty)">
-            <i class="material-icons">edit</i>
-            <span>Edit snippet</span>
-        </div>
-        <div class="error-display">
-            <span>Error occurred</span>
-        </div>
-        <div class="icon-container about">
-            <i class="material-icons">help</i>
-            <span>About</span>
-        </div>
-    </header>
-    @RenderBody()
-
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            document.querySelectorAll('pre code').forEach((block) => {
-                hljs.highlightBlock(block);
+    <body class="hljs">
+        <header class="header">
+            <div class="icon-container create @((bool)ViewData["CreateDisabled"] ? "disabled" : string.Empty)">
+                <i class="material-icons">add</i>
+                <span>Create new snippet</span>
+            </div>
+            <div class="icon-container save @((bool)ViewData["SaveDisabled"] ? "disabled" : string.Empty)">
+                <i class="material-icons">save</i>
+                <span>Save snippet</span>
+            </div>
+            <div class="icon-container edit @((bool)ViewData["EditDisabled"] ? "disabled" : string.Empty)">
+                <i class="material-icons">edit</i>
+                <span>Edit snippet</span>
+            </div>
+            <div class="error-display">
+                <span>Error occurred</span>
+            </div>
+            <div class="icon-container about">
+                <i class="material-icons">help</i>
+                <span>About</span>
+            </div>
+        </header>
+@RenderBody()
+        <script>
+            $(document).ready(function() {
+                $('pre code').each(function() {
+                    hljs.highlightBlock(this);
+                });
+                $('.icon-container.create:not(.disabled)').click(function () {
+                    document.location = "/";
+                });
+                $('.icon-container.about:not(.disabled)').click(function () {
+                    document.location = "/about.md";
+                });
             });
-        });
-        $('.icon-container.create:not(.disabled)').click(function () {
-            document.location = "/";
-        });
-        $('.icon-container.about:not(.disabled)').click(function () {
-            document.location = "/about.md";
-        });
-    </script>
-    @RenderSection("Scripts", required: false)
-</body>
+        </script>
+@RenderSection("Scripts", required: false)
+    </body>
 </html>

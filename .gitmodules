@@ -1,3 +1,15 @@
 [submodule "libs/UniqueId"]
 	path = libs/UniqueId
 	url = https://github.com/Izumemori/UniqueId.git
+[submodule "PasteSolutions/wwwroot/jquery.taboverride"]
+	path = PasteSolutions/wwwroot/jquery.taboverride
+	url = https://github.com/wjbryant/jquery.taboverride
+[submodule "PasteSolutions/wwwroot/libs/jquery.taboverride"]
+	path = PasteSolutions/wwwroot/libs/jquery.taboverride
+	url = https://github.com/wjbryant/jquery.taboverride
+[submodule "PasteSolutions/wwwroot/libs/taboverride"]
+	path = PasteSolutions/wwwroot/libs/taboverride
+	url = https://github.com/wjbryant/taboverride.git
+[submodule "PasteSolutions/wwwroot/libs/highlight.js"]
+	path = PasteSolutions/wwwroot/libs/highlight.js
+	url = https://github.com/highlightjs/highlight.js.git

@@ -16,34 +16,21 @@
         }
     </div>
     <pre><code class="@Model.Extension hljs">@Model.Code</code></pre>
-    <script>
-        var lastHighlight;
-
-        $(document).ready(function(){
-            $("code").each(function(){
+</div>
+<script>
+    $(document).ready(function(){
+        $("code").each(function(){
             $(this).html($(this).html().trim());
-            });
+        });
 
-            window.highlightSelectedLine = function() {
-            var hash = window.location.hash;
-            if (!hash) return;
-
-            if (lastHighlight)
-                $(lastHighlight).removeClass('selected');
-
-            var number = hash.substr(1, hash.length-1);
-            lastHighlight = $(`.line-number #${number}`).first().parent();
-            lastHighlight.addClass('selected');
-            };
-            $(window).on('hashchange', function() {
-                highlightSelectedLine();
-            });
-
+        $(window).on('hashchange', function() {
             highlightSelectedLine();
         });
 
-        $('.icon-container.edit').click(function () {
-            document.location = "/?template=@Model.Id"
-        });
-    </script>
-</div>
+        highlightSelectedLine();
+    });
+
+    $('.icon-container.edit').click(function () {
+        document.location = "/?template=@Model.Id"
+    });
+</script>
