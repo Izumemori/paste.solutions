@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using PasteSolutions.Database;
 using PasteSolutions.Database.Models;
@@ -27,6 +28,17 @@ namespace PasteSolutions.Controllers
         [HttpGet("/{id}.{ext}")]
         public IActionResult GetSnippet(string id, string ext = null)
         {
+            var files = Directory.GetFiles("wwwroot");
+            var file = files.FirstOrDefault(x => Path.GetFileNameWithoutExtension(x) == id);
+            if (file != null)
+            {
+                var provider = new FileExtensionContentTypeProvider();
+                
+                provider.TryGetContentType(file, out var contentType);
+
+                return File(System.IO.File.ReadAllBytes(file), contentType ?? "text/plain");
+            }
+
             if (!TryGetSnippetById(id, ext, out var snippet)) return NotFound();
 
             if (string.IsNullOrEmpty(ext)) ext = snippet.Language;
@@ -78,6 +90,7 @@ namespace PasteSolutions.Controllers
         private bool TryGetSnippetById(string id, string ext, out Snippet snippet)
         {
             snippet = null;
+
             var files = Directory.GetFiles(this._config["staticPagesPath"], $"{id}.*");
 
             if (files.Count() > 0) // Get file from static storage

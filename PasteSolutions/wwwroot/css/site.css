@@ -100,7 +100,7 @@ body {
 .header > .icon-container.disabled > i {
     margin-top: auto;
     margin-bottom: auto;
-    opacity: 0.1;
+    opacity: 0.3;
     height: 4%;
 }
 .header > .icon-container.disabled:hover > i {
@@ -144,11 +144,12 @@ body {
     user-select: none;
     -moz-user-select: none;
     background-color: #1c1c1c;
+    text-align: right;
 }
 
 .arrow {
-    padding-left: 1vw;
     padding-right: .5vw;
+    padding-left: 2vw;
 }
 
 .line-number {
@@ -157,7 +158,6 @@ body {
     text-decoration: none;
     padding-left: 1vw;
     padding-right: .5vw;
-    text-align: right;
 }
 
 .line-number.selected {
