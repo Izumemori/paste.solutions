@@ -6,7 +6,6 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
 COPY ["PasteSolutions/PasteSolutions.csproj", "PasteSolutions/"]
 COPY libs/* libs/
-RUN ls -la libs/
 RUN dotnet restore "PasteSolutions/PasteSolutions.csproj"
 COPY . .
 WORKDIR "/src/PasteSolutions"
