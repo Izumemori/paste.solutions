@@ -104,7 +104,7 @@ body {
     height: 4%;
 }
 .header > .icon-container.disabled:hover > i {
-    opacity: 0.1;
+    opacity: 0.3;
 }
 
 .header > .icon-container:hover > i {
