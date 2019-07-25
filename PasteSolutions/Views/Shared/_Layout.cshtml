@@ -6,8 +6,12 @@
     <title>paste.solutions</title>
 
 @await Html.PartialAsync("_Styles")
-@await Html.PartialAsync("_OpenGraph")
 @await Html.PartialAsync("_Favicon")
+
+@if((bool)ViewData["IsIndex"])
+{
+@await Html.PartialAsync("_OpenGraph")
+}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="~/js/site.min.js"></script>
     <meta name="robots" content="nofollow">
