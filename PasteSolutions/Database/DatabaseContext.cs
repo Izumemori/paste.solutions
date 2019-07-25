@@ -36,10 +36,9 @@ namespace PasteSolutions.Database
                     .HasColumnName("language");
                 x.Property(x => x.Content)
                     .HasColumnName("content");
-                x.Property(x => x.Expires)
+                x.Property(x => x.LastAccess)
                     .HasColumnType("timezonetz")
-                    .HasColumnName("expires")
-                    .HasDefaultValue(DateTimeOffset.Now.AddDays(10));
+                    .HasColumnName("last_access");
                 x.ToTable("snippets");
             });
 

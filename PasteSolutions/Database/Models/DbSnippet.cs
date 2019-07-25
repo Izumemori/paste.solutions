@@ -13,6 +13,6 @@ namespace PasteSolutions.Database.Models
 
         public string Language { get; set; }
 
-        public DateTimeOffset? Expires { get; set; }
+        public DateTimeOffset? LastAccess { get; set; }
     }
 }

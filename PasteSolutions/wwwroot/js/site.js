@@ -14,7 +14,7 @@
             }
         }
 
-        req.open("POST", "api/upload", true);
+        req.open("POST", "api/new", true);
         req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
 
         var jsonPayload = {

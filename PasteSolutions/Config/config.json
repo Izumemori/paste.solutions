@@ -1,0 +1,31 @@
+{
+  "staticPagesPath": "static-pages",
+  "IpRateLimiting": {
+    "EnableEndpointRateLimiting": true,
+    "StackBlockedRequests": false,
+    "RealIpHeader": "X-Forwarded-For",
+    "ClientIdHeader": "X-ClientId",
+    "HttpStatusCode": 429,
+    "IpWhitelist": [],
+    "EndpointWhitelist": [ "get:/api/license", "*:/api/status", "*:/" ],
+    "ClientWhitelist": [],
+    "QuotaExceededResponse": {
+        "Content": "{{ \"errorCode\": \"2000\", \"error\": \"Quota exceeded. Maximum allowed: {0} per {1}. Please try again in {2} second(s).\", \"retry\": \"{2}\", \"limit\": \"{0}\", \"period\": \"{1}\"}}",
+        "ContentType": "application/json",
+        "StatusCode": 429
+    },
+    "GeneralRules": [
+      {
+        "Endpoint": "get:/api/snippet/*",
+        "Period": "100s",
+        "Limit": 2
+      },
+      {
+        "Endpoint": "post:/api/new",
+        "Period": "5s",
+        "Limit": 1
+      }
+    ]
+  },
+  "pruneAfterSeconds": "5259492"
+}
