@@ -7,18 +7,18 @@
     "ClientIdHeader": "X-ClientId",
     "HttpStatusCode": 429,
     "IpWhitelist": [],
-    "EndpointWhitelist": [ "get:/api/license", "*:/api/status", "*:/" ],
+    "EndpointWhitelist": [ "get:/api/license", "*:/status", "*:/" ],
     "ClientWhitelist": [],
     "QuotaExceededResponse": {
-        "Content": "{{ \"errorCode\": \"2000\", \"error\": \"Quota exceeded. Maximum allowed: {0} per {1}. Please try again in {2} second(s).\", \"retry\": \"{2}\", \"limit\": \"{0}\", \"period\": \"{1}\"}}",
+        "Content": "{{ \"error_code\": \"2000\", \"error\": \"Quota exceeded. Maximum allowed: {0} per {1}. Please try again in {2} second(s).\", \"retry\": \"{2}\", \"limit\": \"{0}\", \"period\": \"{1}\"}}",
         "ContentType": "application/json",
         "StatusCode": 429
     },
     "GeneralRules": [
       {
         "Endpoint": "get:/api/snippet/*",
-        "Period": "100s",
-        "Limit": 2
+        "Period": "1s",
+        "Limit": 1
       },
       {
         "Endpoint": "post:/api/new",

@@ -9,29 +9,6 @@ They can be saved by either pressing the 'save' icon, or by pressing Ctrl + S.
 
 There's also a rest endpoint at https://paste.solutions/api/upload that accepts json in the following format:
 
-```json
-{
-	"snippet": "<the paste>",
-	"language": "<the language of the paste>"
-}
-```
-
-which will generate the following response:
-
-```json
-{
-	"id": "<id of the saved snippet>"
-}
-```
-
-or an error:
-
-```json
-{
-	"error": "<error message>",
-	"error_code": "<error code>"
-}
-```
 
 ## Viewing snippets
 
@@ -49,3 +26,14 @@ Currently there is no lifetime limit, but in future I'll be pruning all snippets
 ## License
 
 This project is FOSS licensed under LGPL 2.1
+
+## Libraries used
+
+ - JQuery _https://jquery.com/_
+ - Material Icons _https://material.io/resources/icons/_  
+ - Roboto Mono _https://fonts.google.com/specimen/Roboto+Mono_
+ - taboverride _https://github.com/wjbryant/taboverride_
+ - jquery.taboverride _https://github.com/wjbryant/jquery.taboverride_
+ - highlight.js _https://highlightjs.org/_
+ - ASP.NET Core _https://dotnet.microsoft.com/_
+ - AspNetCoreRateLimit _https://github.com/stefanprodan/AspNetCoreRateLimit_

@@ -21,7 +21,7 @@ namespace PasteSolutions.Controllers
 
         [HttpGet("{id}")]
         [HttpGet("{id}.{ext}")]
-        public IActionResult GetSnippet(string id, string ext = null)
+        public async Task<IActionResult> GetSnippet(string id, string ext = null)
         {
             var files = Directory.GetFiles("wwwroot");
             var file = files.FirstOrDefault(x => Path.GetFileNameWithoutExtension(x) == id);
@@ -38,14 +38,28 @@ namespace PasteSolutions.Controllers
 
             if (string.IsNullOrEmpty(ext)) ext = snippet.Language;
 
+            if (snippet.DbSnippet != null)
+            {
+                snippet.DbSnippet.LastAccess = DateTimeOffset.UtcNow;
+                this._databaseContext.Update(snippet.DbSnippet);
+                await this._databaseContext.SaveChangesAsync();
+            }
+
             return View(new ViewPasteModel(id, snippet.Text, ext));
         }
 
         [HttpGet("{id}/raw")]
         [HttpGet("{id}.{ext}/raw")]
-        public IActionResult GetRawSnippet(string id, string ext = null)
+        public async Task<IActionResult> GetRawSnippet(string id, string ext = null)
         {
             if (!TryGetSnippetById(id, ext, out var snippet)) return NotFound();
+
+            if (snippet.DbSnippet != null)
+            {
+                snippet.DbSnippet.LastAccess = DateTimeOffset.UtcNow;
+                this._databaseContext.Update(snippet.DbSnippet);
+                await this._databaseContext.SaveChangesAsync();
+            }
 
             return Content(snippet.Text);
         }

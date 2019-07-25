@@ -21,9 +21,15 @@ namespace PasteSolutions.Controllers
         {}
 
         [HttpGet("snippet/{id}")]
-        public ActionResult GetSnippet(string id)
+        public async Task<ActionResult> GetSnippet(string id)
         {
-            if (!TryGetSnippetById(id, string.Empty, out var snippet)) return NotFound(Errors.SnippetNotFound);
+            if (!TryGetSnippetById(id, string.Empty, out var snippet) || snippet.DbSnippet is null)
+                return NotFound(Errors.SnippetNotFound);
+
+            snippet.DbSnippet.LastAccess = DateTimeOffset.UtcNow;
+
+            this._databaseContext.Update(snippet.DbSnippet);
+            await this._databaseContext.SaveChangesAsync();
 
             return Ok(snippet);
         }
