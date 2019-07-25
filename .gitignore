@@ -4,3 +4,5 @@
 bin/
 obj/
 .env
+site.min.js
+site.min.css

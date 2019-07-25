@@ -29,7 +29,11 @@
             <div class="error-display">
                 <span>Error occurred</span>
             </div>
-            <div class="icon-container about">
+            <div class="icon-container privacy right">
+                <i class="material-icons">import_contacts</i>
+                <span>Privacy Policy</span>
+            </div>
+            <div class="icon-container about right">
                 <i class="material-icons">help</i>
                 <span>About</span>
             </div>
@@ -45,6 +49,9 @@
                 });
                 $('.icon-container.about:not(.disabled)').click(function () {
                     document.location = "/about.md";
+                });
+                $('.icon-container.privacy:not(.disabled)').click(function () {
+                    document.location = "/privacy.md";
                 });
             });
         </script>
