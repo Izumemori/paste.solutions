@@ -51,7 +51,7 @@ namespace PasteSolutions.Controllers
 
             if (dbSnippet is null) return false;
 
-            snippet = new Snippet() { Id = id, Text = dbSnippet.Content, Language = dbSnippet.Language };
+            snippet = new Snippet() { Id = id, Text = dbSnippet.Content, Language = dbSnippet.Language, DbSnippet = dbSnippet };
 
             return true;
         }
