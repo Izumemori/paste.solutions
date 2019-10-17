@@ -1,27 +1,42 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Npgsql;
 using PasteSolutions.Database.Generators;
 using PasteSolutions.Database.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Threading.Tasks;
+using PasteSolutions.Objects;
 using UniqueID;
 
 namespace PasteSolutions.Database
 {
     public class DatabaseContext : DbContext
     {
-        private readonly IConfiguration _config;
         public GeneratorBucket GeneratorBucket { get; private set; }
         public DbSet<DbSnippet> Snippets { get; set; }
 
-        public DatabaseContext(IConfiguration config, GeneratorBucket generatorBucket, DbContextOptions<DatabaseContext> options)
+        private readonly DatabaseConfiguration _config;
+
+        public DatabaseContext(IOptions<DatabaseConfiguration> config, GeneratorBucket generatorBucket, DbContextOptions<DatabaseContext> options)
             : base(options)
         {
-            this._config = config;
             this.GeneratorBucket = generatorBucket;
+            this._config = config.Value;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var csb = new NpgsqlConnectionStringBuilder()
+            {
+                Host = this._config.Host,
+                Port = this._config.Port,
+                Database = this._config.Database,
+                Username = this._config.Username,
+                Password = this._config.Password,
+
+                SslMode = SslMode.Prefer,
+                TrustServerCertificate = true // or not, if you are sure that your certs are issued by well-known CAs
+            };
+
+            optionsBuilder.UseNpgsql(csb.ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder model)

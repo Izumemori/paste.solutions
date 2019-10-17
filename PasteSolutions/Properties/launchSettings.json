@@ -19,12 +19,12 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "DB_USERNAME": "izumemori",
-        "DB_DATABASE": "paste_solutions_dev",
-        "DB_PORT": "46420",
-        "DB_PASSWORD": "MJ3g4POVz[jYpT_wfFeK",
-        "DB_HOST": "db.paste.solutions",
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "PASTE_SOLUTIONS_DB__PASSWORD": "hunter2",
+        "PASTE_SOLUTIONS_DB__DATABASE": "izu",
+        "PASTE_SOLUTIONS_DB__HOST": "10.0.4.3",
+        "PASTE_SOLUTIONS_DB__USERNAME": "izu",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PASTE_SOLUTIONS_DB__PORT": "5432"
       },
       "applicationUrl": "http://localhost:5000"
     },
