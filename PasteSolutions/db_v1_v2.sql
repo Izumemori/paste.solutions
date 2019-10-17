@@ -1,0 +1,3 @@
+ALTER TABLE snippets ALTER COLUMN content TYPE TEXT;
+-- so funny thing about timestamptz
+-- it doesn't actually do what you think it does...

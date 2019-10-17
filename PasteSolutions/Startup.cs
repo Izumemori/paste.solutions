@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreRateLimit;
@@ -8,13 +5,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -36,22 +29,17 @@ namespace PasteSolutions
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
-            var dbPort = Environment.GetEnvironmentVariable("DB_PORT");
-            var dbDatabase = Environment.GetEnvironmentVariable("DB_DATABASE");
-            var dbUsername = Environment.GetEnvironmentVariable("DB_USERNAME");
-            var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-            var connectionString = $"host={dbHost};port={dbPort};username={dbUsername};password={dbPassword};database={dbDatabase}";
-
-            services.AddSingleton<GeneratorBucket>();
-            services.AddDbContext<DatabaseContext>(x => x.UseNpgsql(connectionString));
+            //Console.WriteLine(string.Join("\n", Configuration.AsEnumerable().Select(x => $"{x.Key} - {x.Value}")));
 
             services.AddOptions();
-            // Ratelimiting
-            services.AddMemoryCache();
             services.Configure<IpRateLimitOptions>(Configuration.GetSection("IpRateLimiting"));
-            Console.WriteLine(string.Join("\n", Configuration.AsEnumerable().Select(x => $"{x.Key} - {x.Value}")));
             services.Configure<IpRateLimitPolicies>(Configuration.GetSection("IpRateLimitPolicies"));
+            services.Configure<DatabaseConfiguration>(this.Configuration.GetSection("DB"));
+
+            services.AddSingleton<GeneratorBucket>();
+            services.AddDbContext<DatabaseContext>(ServiceLifetime.Transient);
+
+            services.AddMemoryCache();
             services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
             services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
 
@@ -60,6 +48,7 @@ namespace PasteSolutions
 
             services.AddControllersWithViews()
                 .AddNewtonsoftJson();
+
             services.AddRazorPages();
             services.AddHealthChecks()
                 .AddDbContextCheck<DatabaseContext>();
@@ -97,6 +86,7 @@ namespace PasteSolutions
         {
             httpContext.Response.ContentType = "application/json";
 
+            // why, for christ's sake, won't you make an object, then serialize it?
             var json = new JObject(
                 new JProperty("status", result.Status.ToString()),
                 new JProperty("results", new JObject(result.Entries.Select(pair =>

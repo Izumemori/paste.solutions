@@ -3,26 +3,26 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UserSecretsId>eaaf2d7b-affd-4932-8261-db164096d88a</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="BuildBundlerMinifier" Version="2.9.406"/>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview7*"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0-preview7*"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0-preview7*">
+    <PackageReference Include="BuildBundlerMinifier" Version="3.1.430" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.0-preview7*"/>
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0-preview7*"/>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.12"/>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview*"/>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.0-preview7*"/>
-    <PackageReference Include="AspNetCoreRateLimit" Version="3.0.5"/>
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.0.0-preview7.19365.7"/>
-    <ProjectReference Include="../libs/UniqueId/src/UniqueID/UniqueID.csproj"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.1" />
+    <PackageReference Include="AspNetCoreRateLimit" Version="3.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.0.0" />
+    <ProjectReference Include="../libs/UniqueId/src/UniqueID/UniqueID.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="static-pages/**" CopyToPublishDirectory="Always"/>
+    <Content Include="static-pages/**" CopyToPublishDirectory="Always" />
   </ItemGroup>
 </Project>
